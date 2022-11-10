@@ -1,6 +1,7 @@
 
 # Experiment--09-Implementation-of Shift-registers-using-verilog-
-### AIM: To implement PISO , PIPO,PISO  using verilog and validating their functionality using their functional tables
+### AIM: 
+To implement PISO , PIPO,PISO  using verilog and validating their functionality using their functional tables
 ### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
 ### SOFTWARE REQUIRED:   Quartus prime
 ### THEORY 
@@ -48,32 +49,70 @@ A Parallel in Parallel out (PIPO) shift register is used as a temporary storage 
 ### PROGRAM 
 /*
 Program for  Implementation-of Shift-registers-using-verilog-
-Developed by: 
-RegisterNumber:  
+Developed by: K.Jhansi
+RegisterNumber:  212221230045
 */
+### SIPO:
+```
+module sipo(si,clk,po);
+input si,clk;
+output [0:7]po;
+reg [0:7]temp;
+always@(posedge clk)
+begin
+temp = {temp[0:6],si};
+end
+assign po=temp;
+endmodule
+```
 
+### PISO:
+```
+module ex9(clk,pin,load,so);
+input load,clk;
+input [3:0]pin;
+output reg so;
+reg [3:0]temp;
+always@(posedge clk)
+begin
+if(load)
+temp<=pin;
+end
+begin
+so<=temp[3]
+temp<={temp[2:0],1'b0};
+end
+endmodule
 
-
-
-
-
+```
+### PIPO:
+```
+module pipo(po,pi,clk);
+input clk;
+input [3:0]pi;
+output reg[3:0]po;
+always@(posedge clk)
+begin 
+po=pi;
+end
+endmodule
+```
 ### RTL LOGIC  REGISTERS   
+![output](output3.png)
 
+![output](output1.png)
 
-
-
-
-
-
+![output](output2.png)
 
 
 ### TIMING DIGRAMS FOR SHIFT REGISTERS
+![output](output4.png)
+
+![output](output6.png)
+
+![output](output5.png)
 
 
 
-
-
-
-
-
-### RESULTS 
+### RESULTS :
+To implement PISO,PIPO,PISO  using verilog and validating their functionality using their functional tables is successful.
